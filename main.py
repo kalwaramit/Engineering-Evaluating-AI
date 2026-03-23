@@ -20,7 +20,14 @@ def preprocess_data(df):
     # remove noise in input data
     df = noise_remover(df)
     # translate data to english
-    df[Config.TICKET_SUMMARY] = translate_to_en(df[Config.TICKET_SUMMARY].tolist())
+    grouped_df = df.groupby(Config.GROUPED)
+
+    for name, group_df in grouped_df:
+     print(name)
+    X, group_df = get_embeddings(group_df)
+    data = get_data_object(X, group_df)
+    perform_modelling(data, group_df, name)
+    # df[Config.TICKET_SUMMARY] = translate_to_en(df[Config.TICKET_SUMMARY].tolist())
     return df
 
 def get_embeddings(df:pd.DataFrame):
