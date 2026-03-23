@@ -20,34 +20,34 @@ def de_duplication(data: pd.DataFrame):
 
     cu_template = {
         "english":
-            ["(?:Aspiegel|\*\*\*\*\*\(PERSON\)) Customer Support team\,?",
-             "(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE is a company incorporated under the laws of Ireland with its headquarters in Dublin, Ireland\.?",
-             "(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE is the provider of Huawei Mobile Services to Huawei and Honor device owners in (?:Europe|\*\*\*\*\*\(LOC\)), Canada, Australia, New Zealand and other countries\.?"]
+            [r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) Customer Support team\,?",
+             r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE is a company incorporated under the laws of Ireland with its headquarters in Dublin, Ireland\.?",
+             r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE is the provider of Huawei Mobile Services to Huawei and Honor device owners in (?:Europe|\*\*\*\*\*\(LOC\)), Canada, Australia, New Zealand and other countries\.?"]
         ,
         "german":
-            ["(?:Aspiegel|\*\*\*\*\*\(PERSON\)) Kundenservice\,?",
-             "Die (?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE ist eine Gesellschaft nach irischem Recht mit Sitz in Dublin, Irland\.?",
-             "(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE ist der Anbieter von Huawei Mobile Services für Huawei- und Honor-Gerätebesitzer in Europa, Kanada, Australien, Neuseeland und anderen Ländern\.?"]
+            [r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) Kundenservice\,?",
+             r"Die (?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE ist eine Gesellschaft nach irischem Recht mit Sitz in Dublin, Irland\.?",
+             r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE ist der Anbieter von Huawei Mobile Services für Huawei- und Honor-Gerätebesitzer in Europa, Kanada, Australien, Neuseeland und anderen Ländern\.?"]
         ,
         "french":
-            ["L'équipe d'assistance à la clientèle d'Aspiegel\,?",
-             "Die (?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE est une société de droit irlandais dont le siège est à Dublin, en Irlande\.?",
-             "(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE est le fournisseur de services mobiles Huawei aux propriétaires d'appareils Huawei et Honor en Europe, au Canada, en Australie, en Nouvelle-Zélande et dans d'autres pays\.?"]
+            [r"L'équipe d'assistance à la clientèle d'Aspiegel\,?",
+             r"Die (?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE est une société de droit irlandais dont le siège est à Dublin, en Irlande\.?",
+             r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE est le fournisseur de services mobiles Huawei aux propriétaires d'appareils Huawei et Honor en Europe, au Canada, en Australie, en Nouvelle-Zélande et dans d'autres pays\.?"]
         ,
         "spanish":
-            ["(?:Aspiegel|\*\*\*\*\*\(PERSON\)) Soporte Servicio al Cliente\,?",
-             "Die (?:Aspiegel|\*\*\*\*\*\(PERSON\)) es una sociedad constituida en virtud de la legislación de Irlanda con su sede en Dublín, Irlanda\.?",
-             "(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE es el proveedor de servicios móviles de Huawei a los propietarios de dispositivos de Huawei y Honor en Europa, Canadá, Australia, Nueva Zelanda y otros países\.?"]
+            [r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) Soporte Servicio al Cliente\,?",
+             r"Die (?:Aspiegel|\*\*\*\*\*\(PERSON\)) es una sociedad constituida en virtud de la legislación de Irlanda con su sede en Dublín, Irlanda\.?",
+             r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE es el proveedor de servicios móviles de Huawei a los propietarios de dispositivos de Huawei y Honor en Europa, Canadá, Australia, Nueva Zelanda y otros países\.?"]
         ,
         "italian":
-            ["Il tuo team ad (?:Aspiegel|\*\*\*\*\*\(PERSON\)),?",
-             "Die (?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE è una società costituita secondo le leggi irlandesi con sede a Dublino, Irlanda\.?",
-             "(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE è il fornitore di servizi mobili Huawei per i proprietari di dispositivi Huawei e Honor in Europa, Canada, Australia, Nuova Zelanda e altri paesi\.?"]
+            [r"Il tuo team ad (?:Aspiegel|\*\*\*\*\*\(PERSON\)),?",
+             r"Die (?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE è una società costituita secondo le leggi irlandesi con sede a Dublino, Irlanda\.?",
+             r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE è il fornitore di servizi mobili Huawei per i proprietari di dispositivi Huawei e Honor in Europa, Canada, Australia, Nuova Zelanda e altri paesi\.?"]
         ,
         "portguese":
-            ["(?:Aspiegel|\*\*\*\*\*\(PERSON\)) Customer Support team,?",
-             "Die (?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE é uma empresa constituída segundo as leis da Irlanda, com sede em Dublin, Irlanda\.?",
-             "(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE é o provedor de Huawei Mobile Services para Huawei e Honor proprietários de dispositivos na Europa, Canadá, Austrália, Nova Zelândia e outros países\.?"]
+            [r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) Customer Support team,?",
+             r"Die (?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE é uma empresa constituída segundo as leis da Irlanda, com sede em Dublin, Irlanda\.?",
+             r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) SE é o provedor de Huawei Mobile Services para Huawei e Honor proprietários de dispositivos na Europa, Canadá, Austrália, Nova Zelândia e outros países\.?"]
         ,
     }
 
@@ -58,11 +58,11 @@ def de_duplication(data: pd.DataFrame):
 
     # -------- email split template
 
-    pattern_1 = "(From\s?:\s?xxxxx@xxxx.com Sent\s?:.{30,70}Subject\s?:)"
-    pattern_2 = "(On.{30,60}wrote:)"
-    pattern_3 = "(Re\s?:|RE\s?:)"
-    pattern_4 = "(\*\*\*\*\*\(PERSON\) Support issue submit)"
-    pattern_5 = "(\s?\*\*\*\*\*\(PHONE\))*$"
+    pattern_1 = r"(From\s?:\s?xxxxx@xxxx.com Sent\s?:.{30,70}Subject\s?:)"
+    pattern_2 = r"(On.{30,60}wrote:)"
+    pattern_3 = r"(Re\s?:|RE\s?:)"
+    pattern_4 = r"(\*\*\*\*\*\(PERSON\) Support issue submit)"
+    pattern_5 = r"(\s?\*\*\*\*\*\(PHONE\))*$"
 
     split_pattern = f"{pattern_1}|{pattern_2}|{pattern_3}|{pattern_4}|{pattern_5}"
 
@@ -110,16 +110,16 @@ def de_duplication(data: pd.DataFrame):
     return data
 
 def noise_remover(df: pd.DataFrame):
-    noise = "(sv\s*:)|(wg\s*:)|(ynt\s*:)|(fw(d)?\s*:)|(r\s*:)|(re\s*:)|(\[|\])|(aspiegel support issue submit)|(null)|(nan)|((bonus place my )?support.pt 自动回复:)"
+    noise = r"(sv\s*:)|(wg\s*:)|(ynt\s*:)|(fw(d)?\s*:)|(r\s*:)|(re\s*:)|(\[|\])|(aspiegel support issue submit)|(null)|(nan)|((bonus place my )?support.pt 自动回复:)"
     df[Config.TICKET_SUMMARY] = df[Config.TICKET_SUMMARY].str.lower().replace(noise, " ", regex=True).replace(r'\s+', ' ', regex=True).str.strip()
     df[Config.INTERACTION_CONTENT] = df[Config.INTERACTION_CONTENT].str.lower()
     noise_1 = [
-        "(from :)|(subject :)|(sent :)|(r\s*:)|(re\s*:)",
+        r"(from :)|(subject :)|(sent :)|(r\s*:)|(re\s*:)",
         "(january|february|march|april|may|june|july|august|september|october|november|december)",
         "(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)",
         "(monday|tuesday|wednesday|thursday|friday|saturday|sunday)",
-        "\d{2}(:|.)\d{2}",
-        "(xxxxx@xxxx\.com)|(\*{5}\([a-z]+\))",
+        r"\d{2}(:|.)\d{2}",
+        r"(xxxxx@xxxx\.com)|(\*{5}\([a-z]+\))",
         "dear ((customer)|(user))",
         "dear",
         "(hello)|(hallo)|(hi )|(hi there)",
@@ -151,9 +151,9 @@ def noise_remover(df: pd.DataFrame):
         "(aspiegel )?se is a company incorporated under the laws of ireland with its headquarters in dublin, ireland.",
         "(aspiegel )?se is the provider of huawei mobile services to huawei and honor device owners in",
         "canada, australia, new zealand and other countries",
-        "\d+",
+        r"\d+",
         "[^0-9a-zA-Z]+",
-        "(\s|^).(\s|$)"]
+        r"(\s|^).(\s|$)"]
     for noise in noise_1:
         #print(noise)
         df[Config.INTERACTION_CONTENT] = df[Config.INTERACTION_CONTENT].replace(noise, " ", regex=True)
