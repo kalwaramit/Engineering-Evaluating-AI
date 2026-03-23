@@ -15,4 +15,3 @@ def get_tfidf_embd(df:pd.DataFrame):
 
 def combine_embd(X1, X2):
     return np.concatenate((X1, X2), axis=1)
-
