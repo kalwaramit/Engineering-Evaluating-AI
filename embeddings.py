@@ -15,3 +15,10 @@ def get_tfidf_embd(df:pd.DataFrame):
 
 def combine_embd(X1, X2):
     return np.concatenate((X1, X2), axis=1)
+
+def train_custom(self, X_train, y_train):
+    self.model.fit(X_train, y_train)
+
+def print_results_custom(self, y_test):
+    from sklearn.metrics import accuracy_score
+    print("Accuracy:", accuracy_score(y_test, self.predictions))
