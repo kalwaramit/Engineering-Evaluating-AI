@@ -41,7 +41,7 @@ def perform_modelling(data: Data, df: pd.DataFrame, name):
     model_predict(data, df, name)
 # Code will start executing from following line
 if __name__ == '__main__':
-    
+    run_chained_controller()
     # pre-processing steps
     df = load_data()
     df = preprocess_data(df)
