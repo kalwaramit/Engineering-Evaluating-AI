@@ -6,6 +6,7 @@ class Config:
     INTERACTION_CONTENT = 'Interaction content'
 
     # Type Columns to test
-    TYPE_COLS = ['y2', 'y3', 'y4']
+    TYPE_COLS = [['y2'], ['y2', 'y3'], ['y2', 'y3', 'y4']]
     CLASS_COL = 'y2'
     GROUPED = 'y1'
+    
