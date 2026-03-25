@@ -27,7 +27,6 @@ def preprocess_data(df):
     X, group_df = get_embeddings(group_df)
     data = get_data_object(X, group_df)
     perform_modelling(data, group_df, name)
-    # df[Config.TICKET_SUMMARY] = translate_to_en(df[Config.TICKET_SUMMARY].tolist())
     return df
 
 def get_embeddings(df:pd.DataFrame):
