@@ -3,6 +3,7 @@ from preprocess import *
 from embeddings import *
 from modelling.modelling import *
 from modelling.data_model import *
+from chained_controller import run_chained_controller
 import random
 seed =0
 random.seed(seed)
@@ -41,16 +42,4 @@ def perform_modelling(data: Data, df: pd.DataFrame, name):
 # Code will start executing from following line
 if __name__ == '__main__':
     run_chained_controller()
-    # pre-processing steps
-    df = load_data()
-    df = preprocess_data(df)
-    df[Config.INTERACTION_CONTENT] = df[Config.INTERACTION_CONTENT].values.astype('U')
-    df[Config.TICKET_SUMMARY] = df[Config.TICKET_SUMMARY].values.astype('U')
-    
-    # data transformation
-    X, group_df = get_embeddings(df)
-    # data modelling
-    data = get_data_object(X, df)
-    # modelling
-    perform_modelling(data, df, 'name')
 
